@@ -1,15 +1,19 @@
-# Imagem base com Java 24
+# Etapa de build (usa Maven + JDK 24)
+FROM maven:3.9-eclipse-temurin-24-alpine AS builder
+WORKDIR /build
+
+# Copia os arquivos do módulo (contexto do build é app/investment)
+COPY pom.xml .
+RUN mvn -B -DskipTests dependency:go-offline
+COPY src ./src
+
+# Compile/empacote (removi -q para ver logs se falhar)
+RUN mvn -B -DskipTests clean package
+
+# Etapa de runtime
 FROM eclipse-temurin:24-jdk-alpine
-
-# Diretório dentro do container
 WORKDIR /app
+COPY --from=builder /build/target/*-SNAPSHOT.jar app.jar
 
-# Copia o JAR da aplicação para o container
-COPY target/investment-0.0.1-SNAPSHOT.jar app.jar
-# ou, se Maven: COPY target/my-spring-app.jar app.jar
-
-# Expõe a porta do Spring Boot
 EXPOSE 8080
-
-# Comando para rodar a aplicação
 ENTRYPOINT ["java","-jar","app.jar"]
