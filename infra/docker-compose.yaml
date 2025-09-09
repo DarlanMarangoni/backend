@@ -1,6 +1,14 @@
 version: '3.9'
 
 services:
+  app:
+    image: my-spring-app-java24:latest
+    container_name: app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod   # ou dev, teste, etc.
+    restart: unless-stopped
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
@@ -15,3 +23,5 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       # Arquivos HTML estáticos
       - ./nginx/html:/usr/share/nginx/html:ro
+    depends_on:
+      - app
