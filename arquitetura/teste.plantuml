@@ -1,0 +1,7 @@
+@startuml
+actor User
+User --> Gateway : busca imagem
+Gateway --> api1 : solicita url da imagem
+api1 --> Gateway : url da imagem
+Gateway --> User : url da imagem
+@enduml
