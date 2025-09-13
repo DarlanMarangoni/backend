@@ -13,7 +13,7 @@ RUN mvn -B -DskipTests clean package
 # Etapa de runtime
 FROM eclipse-temurin:24-jdk-alpine
 WORKDIR /app
-COPY --from=builder ./app/investment/target/*-SNAPSHOT.jar app.jar
+COPY --from=builder build/target/*-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
