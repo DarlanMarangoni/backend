@@ -1,12 +1,26 @@
 version: '3.9'
 
 services:
+  database:
+    image: postgres:13.3-alpine
+    container_name: database
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+      POSTGRES_DB: seu-app-java
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/data:/mnt/e/darlan/develop/postgres/data:rw
   app:
     image: dmarangoni/seu-app-java:latest
     container_name: app
     environment:
       SPRING_PROFILES_ACTIVE: prod   # ou dev, teste, etc.
     restart: unless-stopped
+    depends_on:
+      - database
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
