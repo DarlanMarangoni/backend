@@ -3,6 +3,7 @@ package com.darlanmarangoni.investment.income.resources;
 import com.darlanmarangoni.investment.income.domain.Income;
 import com.darlanmarangoni.investment.income.dtos.IncomeDto;
 import com.darlanmarangoni.investment.income.repositories.IncomeRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class IncomeResource {
     }
 
     @PostMapping("/income")
-    public ResponseEntity<Object> create(@RequestBody IncomeDto dto) {
+    public ResponseEntity<Object> create(@Valid @RequestBody IncomeDto dto) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(repository.save(Income.from(dto)));
