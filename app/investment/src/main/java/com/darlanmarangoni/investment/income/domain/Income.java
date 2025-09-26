@@ -2,8 +2,8 @@ package com.darlanmarangoni.investment.income.domain;
 
 import com.darlanmarangoni.investment.income.dtos.IncomeDto;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,6 +17,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Income {
 
     @Id
@@ -47,4 +48,18 @@ public class Income {
         return target;
     }
 
+    /**
+     * Updates this income with data from the provided DTO
+     * @param dto Data Transfer Object with updated values
+     * @return this income with updated values
+     */
+    public Income update(IncomeDto dto) {
+        this.name = dto.name();
+        this.type = dto.type();
+        this.description = dto.description();
+        this.value = dto.value();
+        this.date = dto.date();
+        this.userId = dto.userId();
+        return this;
+    }
 }
