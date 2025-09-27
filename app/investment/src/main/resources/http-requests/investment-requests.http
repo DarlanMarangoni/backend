@@ -1,0 +1,52 @@
+POST http://localhost:8080/investments
+Content-Type: application/json
+
+{
+  "name": "PETR4",
+  "type": "Acoes",
+  "description": "Ações da Petrobras",
+  "unitValue": 35.75,
+  "amount": 100,
+  "date": "2025-09-27",
+  "userId": "0199812b-ee85-74a1-8bb3-05d2185f93fc"
+}
+###
+
+
+### Get all investments
+GET http://localhost:8080/investments
+Content-Type: application/json
+
+###
+
+
+### Get investment by ID
+GET http://localhost:8080/investments/9af28817-7fbc-4d3e-90b0-1a797a5b53a8
+Content-Type: application/json
+
+###
+
+
+### Update an investment
+PUT http://localhost:8080/investments/9af28817-7fbc-4d3e-90b0-1a797a5b53a8
+Content-Type: application/json
+
+{
+  "name": "PETR4",
+  "type": "Acoes",
+  "description": "Ações da Petrobras - Atualizado",
+  "unitValue": 37.50,
+  "amount": 120,
+  "date": "2025-09-27",
+  "userId": "0199812b-ee85-74a1-8bb3-05d2185f93fc"
+}
+
+###
+
+
+### Delete an investment# curl -X DELETE
+DELETE http://localhost:8080/investments/9af28817-7fbc-4d3e-90b0-1a797a5b53a8
+Content-Type: application/json
+
+###
+
