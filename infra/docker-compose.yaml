@@ -13,6 +13,15 @@ services:
       - "5432:5432"
     volumes:
       - ./database/data:/mnt/e/darlan/develop/postgres/data:rw
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/data:/data
+    command: redis-server --appendonly yes --requirepass RedisPassword123!
   app:
     image: dmarangoni/seu-app-java:latest
     container_name: app
@@ -21,6 +30,7 @@ services:
     restart: unless-stopped
     depends_on:
       - database
+      - redis
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
