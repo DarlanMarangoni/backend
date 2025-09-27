@@ -1,6 +1,6 @@
-package com.darlanmarangoni.investment.income.validation;
+package com.darlanmarangoni.income.validation;
 
-import com.darlanmarangoni.investment.income.validation.constraints.ValidIncomeType;
+import com.darlanmarangoni.income.validation.constraints.ValidIncomeType;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

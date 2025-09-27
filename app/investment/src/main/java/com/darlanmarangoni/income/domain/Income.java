@@ -1,6 +1,6 @@
-package com.darlanmarangoni.investment.income.domain;
+package com.darlanmarangoni.income.domain;
 
-import com.darlanmarangoni.investment.income.dtos.IncomeDto;
+import com.darlanmarangoni.income.dtos.IncomeDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

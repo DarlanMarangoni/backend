@@ -1,6 +1,6 @@
-package com.darlanmarangoni.investment.income.dtos;
+package com.darlanmarangoni.income.dtos;
 
-import com.darlanmarangoni.investment.income.validation.constraints.ValidIncomeType;
+import com.darlanmarangoni.income.validation.constraints.ValidIncomeType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

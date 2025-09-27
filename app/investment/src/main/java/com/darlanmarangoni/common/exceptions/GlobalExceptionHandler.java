@@ -1,4 +1,4 @@
-package com.darlanmarangoni.investment.exceptions;
+package com.darlanmarangoni.common.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

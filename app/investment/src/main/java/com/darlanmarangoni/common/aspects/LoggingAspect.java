@@ -1,4 +1,4 @@
-package com.darlanmarangoni.investment.aspects;
+package com.darlanmarangoni.common.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

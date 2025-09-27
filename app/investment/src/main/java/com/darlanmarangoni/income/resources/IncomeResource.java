@@ -1,8 +1,8 @@
-package com.darlanmarangoni.investment.income.resources;
+package com.darlanmarangoni.income.resources;
 
-import com.darlanmarangoni.investment.income.domain.Income;
-import com.darlanmarangoni.investment.income.dtos.IncomeDto;
-import com.darlanmarangoni.investment.income.repositories.IncomeRepository;
+import com.darlanmarangoni.income.domain.Income;
+import com.darlanmarangoni.income.dtos.IncomeDto;
+import com.darlanmarangoni.income.repositories.IncomeRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
