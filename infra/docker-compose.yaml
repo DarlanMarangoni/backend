@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./database/data:/mnt/e/darlan/develop/postgres/data:rw
+      - db_data:/var/lib/postgresql/data
   redis:
     image: redis:7.0-alpine
     container_name: redis
@@ -20,30 +20,9 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./redis/data:/data
+      - redis_data:/data
     command: redis-server --appendonly yes --requirepass RedisPassword123!
-  app:
-    image: dmarangoni/seu-app-java:latest
-    container_name: app
-    environment:
-      SPRING_PROFILES_ACTIVE: prod   # ou dev, teste, etc.
-    restart: unless-stopped
-    depends_on:
-      - database
-      - redis
-  nginx:
-    image: nginx:stable-alpine
-    container_name: nginx
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      # Arquivo principal de configuração do nginx
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      # Configurações adicionais de sites (server blocks)
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      # Arquivos estáticos
-      - ./nginx/static:/usr/share/nginx/static:ro
-    depends_on:
-      - app
+
+volumes:
+  db_data:
+  redis_data:
