@@ -9,7 +9,7 @@ import java.util.List;
 
 public class InvestmentTypeValidator implements ConstraintValidator<ValidInvestmentType, String> {
 
-    private static final List<String> VALID_TYPES = Arrays.asList("Acoes", "FIIs", "Tesouro Direto", "CDB", "LCI", "LCA");
+    private static final List<String> VALID_TYPES = Arrays.asList("Acoes", "Fundo Imobiliario", "Tesouro Direto", "CDB", "LCI", "LCA", "Previdencia Privada", "FGTS", "Fundo de Investimento");
 
     @Override
     public boolean isValid(String type, ConstraintValidatorContext context) {

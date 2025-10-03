@@ -3,11 +3,15 @@ package com.darlanmarangoni.investment.resources;
 import com.darlanmarangoni.investment.domain.Investment;
 import com.darlanmarangoni.investment.dtos.InvestmentDto;
 import com.darlanmarangoni.investment.repositories.InvestmentRepository;
+import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,6 +28,21 @@ public class InvestmentResource {
 
     @PostMapping
     public ResponseEntity<Object> create(@Valid @RequestBody InvestmentDto dto) {
+        Investment investment = Investment.from(dto);
+        if (dto.type().equals("Acoes") || dto.type().equals("Fundo Imobiliario")) {
+            Mono<Investment> investmentMono = WebClient.create(String.format("https://brapi.dev/api/quote/%s?token=wLyxbAcV9Xdsn4aCvDEp7f", dto.name()))
+                    .get()
+                    .retrieve()
+                    .bodyToMono(JsonNode.class)
+                    .flatMap(js -> {
+                        String unitValueStr = js.get("results").get(0).get("regularMarketPrice").asText();
+                        BigDecimal unitValue = new BigDecimal(unitValueStr);
+                        investment.setUnitValue(unitValue);
+                        investment.setTotalValue(unitValue.multiply(new BigDecimal(dto.amount())));
+                        return Mono.just(repository.save(investment));
+                    });
+            return ResponseEntity.ok(investmentMono);
+        }
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(repository.save(Investment.from(dto)));

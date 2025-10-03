@@ -31,6 +31,8 @@ public class Investment {
     private String description;
     @Column(name = "unit_value")
     private BigDecimal unitValue;
+    @Column(name = "total_value")
+    private BigDecimal totalValue;
     @Column(name = "amount")
     private int amount;
     @Column(name = "date")
@@ -48,21 +50,5 @@ public class Investment {
         var target = new Investment();
         BeanUtils.copyProperties(dto, target);
         return target;
-    }
-
-    /**
-     * Updates this investment with data from the provided DTO
-     * @param dto Data Transfer Object with updated values
-     * @return this investment with updated values
-     */
-    public Investment update(InvestmentDto dto) {
-        this.name = dto.name();
-        this.type = dto.type();
-        this.description = dto.description();
-        this.unitValue = dto.unitValue();
-        this.amount = dto.amount();
-        this.date = dto.date();
-        this.userId = dto.userId();
-        return this;
     }
 }
