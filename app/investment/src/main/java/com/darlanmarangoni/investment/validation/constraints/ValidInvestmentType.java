@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = InvestmentTypeValidator.class)
 @Documented
 public @interface ValidInvestmentType {
-    String message() default "Type must be one of: Acoes, FIIs, Tesouro Direto, CDB, LCI, LCA";
+    String message() default "Type must be one of: Acoes, Fundo Imobiliario, Renda Fixa";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

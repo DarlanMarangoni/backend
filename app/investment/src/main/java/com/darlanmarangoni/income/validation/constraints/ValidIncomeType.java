@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = IncomeTypeValidator.class)
 @Documented
 public @interface ValidIncomeType {
-    String message() default "Type must be one of: Renda Fixa, Renda Variavel";
+    String message() default "Type must be one of: Renda Fixa, Fundo Imobiliario, Acoes";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

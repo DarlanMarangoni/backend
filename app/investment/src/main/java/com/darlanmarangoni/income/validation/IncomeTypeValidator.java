@@ -9,7 +9,7 @@ import java.util.List;
 
 public class IncomeTypeValidator implements ConstraintValidator<ValidIncomeType, String> {
 
-    private static final List<String> VALID_TYPES = Arrays.asList("Renda Fixa", "Fii", "Acoes");
+    private static final List<String> VALID_TYPES = Arrays.asList("Renda Fixa", "Fundo Imobiliario", "Acoes");
 
     @Override
     public boolean isValid(String type, ConstraintValidatorContext context) {
