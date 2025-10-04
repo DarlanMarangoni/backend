@@ -85,4 +85,11 @@ public class InvestmentResource {
         repository.delete(investmentOptional.get());
         return ResponseEntity.ok("Investment deleted successfully");
     }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<Investment>> findByNameContaining(
+            @PathVariable String name) {
+        return ResponseEntity.ok(repository.findByNameContainingIgnoreCaseOrderByDateDesc(name));
+    }
+
 }
